@@ -221,14 +221,14 @@ footer{text-align:center;font-size:12px;color:#aaa;padding:18px;border-top:1px s
 const STYLES = {
   korean:{
     name:'한국학술지',
-    info:'<strong>✅ 한국학술지 교정 항목</strong> — 논문제목 따옴표 제거 &nbsp;|&nbsp; 권호 20(2) 형식 &nbsp;|&nbsp; 페이지 391-401 &nbsp;|&nbsp; 부제 콜론(:) &nbsp;|&nbsp; 단행본 출판지 &nbsp;|&nbsp; 영문 &amp; → and &nbsp;|&nbsp; 온라인 검색일 &nbsp;|&nbsp; 학위논문 형식',
+    info:'<strong>✅ 한국학술지 교정 항목</strong> — 논문제목 따옴표 제거 &nbsp;|&nbsp; 권호 20(2) 형식 &nbsp;|&nbsp; 페이지 391-401 &nbsp;|&nbsp; 부제 콜론(:) &nbsp;|&nbsp; <strong style="color:#A32D2D;">학위논문 순서 자동교정</strong> (대학원명↔학위구분) &nbsp;|&nbsp; 단행본 출판지 &nbsp;|&nbsp; 영문 &amp; → and &nbsp;|&nbsp; 온라인 검색일',
     sample:`강제이슨·손재헌·민준원(2022), "10주간 산림트레킹 운동이 중년여성의 평형성, 심폐지구력 및 무릎 등속성 근 비율에 미치는 영향", 한국스포츠학회지, 제20권 2호, pp. 391 ~ 401.
-고숙자(2021), "중년기 생활스트레스가 심리적 안녕감에 미치는 영향"-자아분화. 사회적지지 매개효과를 중심으로. 박사학위논문, 성산효대학원대학교.
+고숙자(2021), "중년기 생활스트레스가 심리적 안녕감에 미치는 영향"-자아분화. 사회적지지 매개효과를 중심으로. 성산효대학원대학교 박사학위논문.
+이승희(2016), 전통놀이를 활용한 집단표현예술치료가 노인의 우울과 생활만족도에 미치는 효과, 명지대학교 대학원 석사학위논문.
+박범진(2010), "산림휴양활동을 이용한 숲치유의 실험적접근-경관감상과 산책을 중심으로-", 박사학위논문, 충남대학교.
 통계청(2023), 장래 기대수명, https://kosis.kr (2025.2.28)
 황성동(2014), "알기 쉬운 메타분석의 이해", 학지사
-박범진(2010), "산림휴양활동을 이용한 숲치유의 실험적접근-경관감상과 산책을 중심으로-", 박사학위논문, 충남대학교.
-Bernard, R. M., Abrami, P. C., & Bethel, E. C. (2009). "A meta-analysis of three types of interaction". Review of Educational research, 79(3), 1243-1289.
-Kaplan, R., and Kaplan, S.(1989), The experience of nature, Cambridge university press.`
+Bernard, R. M., Abrami, P. C., & Bethel, E. C. (2009). "A meta-analysis of three types of interaction". Review of Educational research, 79(3), 1243-1289.`
   },
   apa7:{
     name:'APA 7판',
@@ -322,68 +322,106 @@ function correctKorean(orig){
   let t = orig.trim();
   const iss=[];
 
-  // 1. 논문제목 따옴표 제거 ("…" → 그냥)
-  if(/[""]/.test(t)||/^[^(]+\([^)]+\),\s*[""]/.test(t)){
-    t = t.replace(/[""]/g,'').replace(/[""]/g,'');
+  // 1. 논문제목 따옴표 제거 ("…" 또는 "…" → 없음)
+  if(/["""]/.test(t)){
+    t = t.replace(/["""]/g,'').replace(/["""]/g,'');
     iss.push({type:'error',desc:'논문제목 따옴표("") 제거'});
   }
+
   // 2. 권호 형식: 제N권 M호 → N(M)
   if(/제\s*\d+\s*권/.test(t)){
     t = t.replace(/제\s*(\d+)\s*권\s*(\d+)\s*호/g,'$1($2)');
     t = t.replace(/제\s*(\d+)\s*권/g,'$1');
     iss.push({type:'error',desc:'권호 형식 수정 (제N권M호 → N(M))'});
   }
-  // 3. 페이지 형식: pp. N ~ M / pp N~M → N-M
+
+  // 3. 페이지 형식: pp. N ~ M → N-M
   if(/pp\.?\s*\d+\s*[~～]\s*\d+/i.test(t)){
     t = t.replace(/pp\.?\s*(\d+)\s*[~～]\s*(\d+)/gi,'$1-$2');
     iss.push({type:'error',desc:'페이지 형식 수정 (pp.N~M → N-M)'});
   }
-  // 4. 부제 하이픈 → 콜론: "제목"-부제 → 제목: 부제
-  if(/[""]?[^"]*[""]?\s*[-–]\s*[가-힣]/.test(t)){
-    t = t.replace(/"\s*-\s*/,'": ').replace(/'\s*-\s*/,"': ");
-    t = t.replace(/([가-힣a-zA-Z\)]{2,})\s*"-([가-힣])/, '$1": $2');
-    iss.push({type:'error',desc:'부제 구분 수정 (하이픈 → 콜론)'});
+
+  // 4. 부제 하이픈 → 콜론
+  // 패턴: 제목 뒤 "-한글" 형태 (단, 학위논문 앞 하이픈, 복합단어 하이픈 제외)
+  // "-중심으로-" 형태의 끝 하이픈도 제거
+  const thesisCheck = /학위논문/.test(t);
+  if(!thesisCheck){
+    // 일반 논문 부제: "제목-부제" 또는 제목"-부제"
+    const subPattern = /([가-힣a-zA-Z\)]{3,})\s*[-–]\s*([가-힣]{2,})/g;
+    if(subPattern.test(t)){
+      // 복합명사(노인-아동, N-아동 등 짧은 것)는 제외, 긴 부제만 처리
+      t = t.replace(/([가-힣a-zA-Z\)]{4,})\s*-\s*([가-힣]{2,}[^,.\d])/g, (m,a,b)=>{
+        // 복합명사 패턴 (단어-단어, 앞뒤 2글자 이하) 제외
+        if(a.length<=3 && b.length<=3) return m;
+        return a+': '+b;
+      });
+    }
   }
+  // "-으로-", "-으로", "로-" 형태 끝 처리
+  if(/[-–][가-힣]+[-–]/.test(t)||/[가-힣]+-$/.test(t.replace(/\.$/,''))){
+    t = t.replace(/[-–]([가-힣]+)[-–]/g,': $1');
+    t = t.replace(/([가-힣]+)-,/g,'$1,');
+    t = t.replace(/([가-힣]+)-\./g,'$1.');
+    iss.push({type:'error',desc:'부제 구분 수정 (하이픈 → 콜론, 끝 하이픈 제거)'});
+  }
+
   // 5. 영문 & → and
   if(/\w\s*&\s*\w/.test(t)){
     t = t.replace(/(\w)\s*&\s*(\w)/g,'$1 and $2');
     iss.push({type:'error',desc:'영문 저자 연결 & → and'});
   }
+
   // 6. 온라인 자료 검색일 형식
-  const urlMatch = /https?:\/\//.test(t);
-  if(urlMatch && !/검색일/.test(t)){
-    const dateMatch = t.match(/\((\d{4})[.\-](\d{1,2})[.\-](\d{1,2})\)/);
-    if(dateMatch){
-      t = t.replace(/\((\d{4})[.\-](\d{1,2})[.\-](\d{1,2})\)/,
-        `(검색일: ${dateMatch[1]}. ${String(dateMatch[2]).padStart(2,'0')}. ${String(dateMatch[3]).padStart(2,'0')})`);
+  if(/https?:\/\//.test(t) && !/검색일/.test(t)){
+    const dm = t.match(/\((\d{4})[.\-\/](\d{1,2})[.\-\/](\d{1,2})\)/);
+    if(dm){
+      t = t.replace(/\((\d{4})[.\-\/](\d{1,2})[.\-\/](\d{1,2})\)/,
+        `(검색일: ${dm[1]}. ${String(dm[2]).padStart(2,'0')}. ${String(dm[3]).padStart(2,'0')})`);
       iss.push({type:'error',desc:'온라인 자료 검색일 형식 수정'});
     } else {
       t += ' (검색일: [보완필요])';
       iss.push({type:'error',desc:'온라인 자료 검색일 누락 → 추가 필요'});
     }
   }
-  // 7. 학위논문 순서: 대학교명이 학위구분보다 앞에 있는 경우
-  if(/박사학위논문|석사학위논문/.test(t)){
-    // 마침표 통일
-    t = t.replace(/\.\s*(박사학위논문|석사학위논문)/g, ', $1');
-    t = t.replace(/(박사학위논문|석사학위논문)\s*,\s*(대학원)?\s*,/g,'$1,');
-    if(!/[\.,]\s*$/.test(t)) t = t.trimEnd()+'.';
-    iss.push({type:'warning',desc:'학위논문 형식 확인 (저자명(연도), 제목, 학위구분, 대학원명.)'});
+
+  // 7. ★ 학위논문 순서 자동 교정 ★
+  // 패턴: [대학교/대학원명] [석사/박사]학위논문 → [석사/박사]학위논문, [대학교/대학원명]
+  if(/석사학위논문|박사학위논문/.test(t)){
+    // 7-1. 마침표로 연결된 항목 → 쉼표로 통일
+    t = t.replace(/\.\s*(석사학위논문|박사학위논문)/g,', $1');
+
+    // 7-2. 대학교/대학원명이 학위구분보다 앞에 있는 경우 순서 교체
+    // 패턴: [기관명(대학교|대학원|대학원대학교 등)] [학위구분]
+    const orderPattern = /(,[^,]+(?:대학교|대학원대학교|대학원)(?:\s+(?:일반|교육|전문|산업)대학원)?)\s*[,\s]\s*(석사학위논문|박사학위논문)/;
+    if(orderPattern.test(t)){
+      t = t.replace(
+        /(,\s*)([^,]+(?:대학교|대학원대학교|대학원)(?:\s+(?:일반|교육|전문|산업)대학원)?)\s*[,\s]\s*(석사학위논문|박사학위논문)/,
+        (m, comma, univ, degree) => `, ${degree.trim()}, ${univ.trim()}`
+      );
+      iss.push({type:'error',desc:'학위논문 순서 교정 (대학원명→학위구분 순 → 학위구분→대학원명 순)'});
+    } else {
+      iss.push({type:'ok',desc:'학위논문 형식 정상 (학위구분, 대학원명 순서)'});
+    }
+
+    // 7-3. 마지막 마침표 보장
+    t = t.replace(/,\s*$/, '.');
+    if(!/\.$/.test(t.trim())) t = t.trimEnd()+'.';
   }
+
   // 8. 단행본 출판지 누락 감지
   const parts = t.split(',');
-  const lastPart = parts[parts.length-1].trim().replace('.','');
-  const isJournal = /학회지|학회보|연구|저널|journal|review|science|health|nursing/i.test(t);
-  const isThesis = /학위논문/.test(t);
-  const isOnline = /http/.test(t);
-  const isReport = /산림청|보건복지부|통계청|국가/.test(t);
-  if(!isJournal && !isThesis && !isOnline && !isReport && parts.length===3){
-    iss.push({type:'warning',desc:'단행본 출판지(도시명) 누락 여부 확인 필요'});
+  const isJournal = /학회지|학회보|저널|학술지|journal|review|science|health|nursing|연구$/i.test(t);
+  const isThesis2 = /학위논문/.test(t);
+  const isOnline2 = /http/.test(t);
+  const isReport  = /산림청|보건복지부|통계청|국가|행정|연구원|정부|부처/.test(t);
+  if(!isJournal && !isThesis2 && !isOnline2 && !isReport && parts.length<=3 && parts.length>=2){
+    const lastPart = parts[parts.length-1].trim().replace(/\.$/,'');
+    const hasPublisher = /사|원|부|원$/.test(lastPart);
+    if(hasPublisher) iss.push({type:'warning',desc:'단행본 출판지(도시명) 누락 여부 확인 필요'});
   }
+
   // 9. 마지막 마침표
-  if(!/\.$/.test(t.trim())){
-    t = t.trimEnd()+'.';
-  }
+  if(!/\.$/.test(t.trim())) t = t.trimEnd()+'.';
 
   if(iss.length===0) iss.push({type:'ok',desc:'형식 정상'});
   return {corrected:t, issues:iss};
