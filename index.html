@@ -89,6 +89,9 @@ textarea:focus{border-color:var(--gl);background:var(--wh);}
 .rnum{font-size:11px;font-weight:700;color:#999;}
 .bcp1{font-size:11px;padding:3px 10px;border-radius:20px;border:1px solid var(--bdr);background:var(--gb);color:var(--gd);cursor:pointer;font-family:var(--font);font-weight:700;transition:background .15s;white-space:nowrap;}
 .bcp1:hover{background:var(--gp);}
+.bedit{font-size:11px;padding:3px 10px;border-radius:20px;border:1px solid #DAC8F0;background:#F5EEFF;color:#6B21A8;cursor:pointer;font-family:var(--font);font-weight:700;transition:background .15s;white-space:nowrap;margin-right:4px;}
+.bedit:hover{background:#EDD9FF;}
+.rcorr-edit{font-size:15px;line-height:1.8;color:var(--gray);margin-bottom:8px;word-break:break-all;width:100%;min-height:60px;border:1.5px solid #C4A0F0;border-radius:8px;padding:8px 10px;font-family:var(--font);outline:none;resize:vertical;background:#FDFAFF;}
 .rorig{font-size:13px;color:#BBB;text-decoration:line-through;margin-bottom:5px;line-height:1.6;}
 .rcorr{font-size:15px;line-height:1.8;color:var(--gray);margin-bottom:8px;word-break:break-all;}
 .rcorr mark{background:#FFECEC;color:#A32D2D;font-weight:700;border-radius:3px;padding:0 3px;}
@@ -140,6 +143,39 @@ footer{text-align:center;font-size:12px;color:#aaa;padding:18px;border-top:1px s
       <div class="wt">연구자의 최종 확인이 반드시 필요합니다</div>
       <div class="wb">본 도구는 <strong>규칙 기반 자동 교정 서비스</strong>입니다. 교정 결과는 참고용으로만 활용하시고,
       논문 제출 전 반드시 연구자 본인이 <strong>원문과 대조하여 최종 검토</strong>를 완료하시기 바랍니다.</div>
+    </div>
+  </div>
+
+  <!-- 규칙 기반 한계 및 Claude.ai 안내 -->
+  <div style="background:#EEF4FB;border:1.5px solid #B3CDE8;border-left:5px solid #2F6FA8;border-radius:10px;padding:13px 18px;margin-bottom:14px;">
+    <div style="font-size:13px;font-weight:700;color:#1A3F5C;margin-bottom:8px;">📌 규칙 기반 교정기의 한계 및 이용 안내</div>
+    <div style="font-size:12.5px;color:#2C4A6A;line-height:1.9;">
+      본 교정기는 <strong>미리 정의된 규칙</strong>에 따라 작동하므로 아래와 같은 한계가 있습니다.<br>
+      <span style="display:inline-block;margin-top:4px;">
+        ⚠ 형식이 크게 벗어난 오입력(연도 위치 오류, 특수문자 혼입 등)은 교정이 불완전할 수 있습니다.<br>
+        ⚠ 새로운 유형의 오류는 규칙에 없으면 감지되지 않을 수 있습니다.<br>
+        ⚠ 저널명·단행본명 등 고유명사의 정확성은 확인이 필요합니다.
+      </span>
+    </div>
+    <div style="margin-top:10px;padding:10px 14px;background:#FFFFFF;border-radius:8px;border:1px solid #B3CDE8;">
+      <div style="font-size:13px;font-weight:700;color:#1A3F5C;margin-bottom:5px;">💡 복잡한 교정이 필요할 때 — Claude.ai 무료 이용 안내</div>
+      <div style="font-size:12.5px;color:#2C4A6A;line-height:1.9;">
+        오입력이 심하거나 교정 결과가 이상할 경우, <strong>AI(Claude)에게 직접 교정</strong>을 요청하시면 더 정확한 결과를 얻을 수 있습니다.
+      </div>
+      <div style="margin-top:8px;background:#F0F7FF;border-radius:6px;padding:9px 12px;font-size:12px;color:#1A3F5C;line-height:1.9;">
+        <strong>① 무료 계정 만들기</strong><br>
+        &nbsp;&nbsp;→ <a href="https://claude.ai" target="_blank" style="color:#2F6FA8;font-weight:700;">claude.ai</a> 접속 → 이메일로 무료 가입 (신용카드 불필요)<br>
+        <strong>② 참고문헌 붙여넣기</strong><br>
+        &nbsp;&nbsp;→ 교정이 필요한 참고문헌을 복사하여 Claude 채팅창에 붙여넣기<br>
+        <strong>③ 교정 요청 메시지 입력</strong><br>
+        &nbsp;&nbsp;→ 아래 문구를 함께 입력하세요:
+        <div style="margin-top:6px;background:#E8F0FB;border-radius:5px;padding:7px 10px;font-style:italic;color:#1A3F5C;font-size:12px;">
+          "위 참고문헌을 <strong>한국학술지(또는 APA 7판)</strong> 양식에 맞게 교정해줘. 저자명(연도), 논문제목, 학술지명, 권(호), 페이지. 형식으로 정리하고 오류 항목을 표시해줘."
+        </div>
+      </div>
+      <div style="margin-top:7px;font-size:11.5px;color:#666;">
+        ※ Claude.ai 무료 계정은 하루 일정량까지 무료로 사용 가능합니다. 로그인 없이도 일부 사용 가능합니다.
+      </div>
     </div>
   </div>
 
@@ -209,8 +245,9 @@ footer{text-align:center;font-size:12px;color:#aaa;padding:18px;border-top:1px s
 </main>
 
 <footer>
-  참고문헌 자동교정기 &nbsp;|&nbsp; 충북대학교 산림치유학협동과정<br>
-  <span style="color:#E24B4A;font-weight:700;font-size:11px;">⚠ 규칙 기반 자동교정 결과이며 반드시 연구자의 최종 확인이 필요합니다.</span>
+  참고문헌 자동교정기 &nbsp;|&nbsp; 충북대학교 산림치유학협동과정 &nbsp;|&nbsp; Powered by 규칙 기반 엔진<br>
+  <span style="color:#E24B4A;font-weight:700;font-size:11px;">⚠ 규칙 기반 자동교정 결과이며 반드시 연구자의 최종 확인이 필요합니다.</span><br>
+  <span style="font-size:11px;color:#2F6FA8;">💡 복잡한 교정은 <a href="https://claude.ai" target="_blank" style="color:#2F6FA8;font-weight:700;">claude.ai</a> 무료 계정에서 직접 붙여넣기 하시면 더 정확합니다.</span><br>
   <span class="fdev">즐거운 연구 활동 되세요 &nbsp;|&nbsp; 개발자 이영호</span>
 </footer>
 
@@ -346,9 +383,63 @@ function correctKorean(orig){
   let t = orig.trim();
   const iss=[];
 
-  // 1. 논문제목 따옴표 제거 ("…" 또는 "…" → 없음)
-  if(/["""]/.test(t)){
-    t = t.replace(/["""]/g,'').replace(/["""]/g,'');
+  // ── PRE: 오입력 정규화 ──────────────────────────────────
+
+  // P1. 불필요 특수문자 제거 (=, ※ 등)
+  if(/[=※▪▸►▶]/.test(t)){
+    t = t.replace(/[=※▪▸►▶]/g,'');
+    iss.push({type:'error',desc:'잘못 입력된 특수문자(=, ※ 등) 제거'});
+  }
+
+  // P2. 국내/국외 박사·석사학위논문 → 박사·석사학위논문
+  if(/(국내|국외)\s*(박사|석사)학위논문/.test(t)){
+    t = t.replace(/(국내|국외)\s*(박사|석사)학위논문/g,'$2학위논문');
+    iss.push({type:'error',desc:'학위논문 표기 수정 (국내/국외 삭제)'});
+  }
+
+  // P3. 연도가 끝에 있는 경우 → 저자명 뒤로 이동
+  // 패턴: "…, 2024." 또는 "…. 2024." (저자에 연도 없을 때만)
+  const hasYearInAuthor = /^[가-힣\s·,]{1,20}\((20\d{2}|19\d{2})\)/.test(t);
+  const endYearM = t.match(/[,.]\s*((?:20|19)\d{2})\s*\.?\s*$/);
+  if(endYearM && !hasYearInAuthor){
+    const yr = endYearM[1];
+    t = t.replace(/[,.]\s*(?:20|19)\d{2}\s*\.?\s*$/,'').trim();
+    // 저자명 뒤 마침표나 쉼표를 연도괄호로 교체
+    t = t.replace(/^([가-힣]{2,6}(?:·[가-힣]{2,6})*)\s*[.,]\s*/,`$1(${yr}), `);
+    iss.push({type:'error',desc:`연도(${yr}) 위치 교정 → 저자명 뒤로 이동`});
+  }
+
+  // P4. 저자명 뒤에 연도 없이 마침표만 있는 경우
+  const hasYearInAuthor2 = /^[가-힣\s·,]{1,20}\((20\d{2}|19\d{2})\)/.test(t);
+  if(!hasYearInAuthor2 && /^[가-힣]{2,6}(?:·[가-힣]{2,6})*\.\s/.test(t)){
+    t = t.replace(/^([가-힣]{2,6}(?:·[가-힣]{2,6})*)\.\s*/,'$1([보완필요]), ');
+    iss.push({type:'error',desc:'저자명 뒤 연도 누락 → [보완필요] 표시'});
+  }
+
+  // P5. 마침표 구분자 → 쉼표 통일 (항목 사이 마침표)
+  // "제목." + 공백 + 한글/따옴표로 시작하는 다음 항목
+  const dotCount = (t.match(/\.\s+[가-힣"]/g)||[]).length;
+  if(dotCount >= 1 && !(/https?:\/\//.test(t))){
+    const parts2 = t.split(/\.\s+(?=[가-힣"])/);
+    if(parts2.length > 1){
+      t = parts2.join(', ');
+      if(!/\.$/.test(t)) t += '.';
+      iss.push({type:'error',desc:'구분자 마침표(.) → 쉼표(,)로 통일'});
+    }
+  }
+
+  // P6. 끝에 지역명 단독 기재 제거
+  const regionRE = /,\s*(?:서울|부산|대구|인천|광주|대전|울산|세종|충청북도|충청남도|전라북도|전라남도|경상북도|경상남도|제주도|경기도|강원도|충북|충남|전북|전남|경북|경남|제주)\s*\.?$/;
+  if(regionRE.test(t)){
+    t = t.replace(regionRE,'.');
+    iss.push({type:'error',desc:'불필요한 지역명 단독 기재 제거'});
+  }
+
+  // ── MAIN 교정 ─────────────────────────────────────────
+
+  // 1. 논문제목 따옴표 제거
+  if(/[""“”]/.test(t)){
+    t = t.replace(/["“”]/g,'').replace(/["“”]/g,'');
     iss.push({type:'error',desc:'논문제목 따옴표("") 제거'});
   }
 
@@ -365,31 +456,13 @@ function correctKorean(orig){
     iss.push({type:'error',desc:'페이지 형식 수정 (pp.N~M → N-M)'});
   }
 
-  // 4. 부제 하이픈 → 콜론
-  // 패턴: 제목 뒤 "-한글" 형태 (단, 학위논문 앞 하이픈, 복합단어 하이픈 제외)
-  // "-중심으로-" 형태의 끝 하이픈도 제거
-  const thesisCheck = /학위논문/.test(t);
-  if(!thesisCheck){
-    // 일반 논문 부제: "제목-부제" 또는 제목"-부제"
-    const subPattern = /([가-힣a-zA-Z\)]{3,})\s*[-–]\s*([가-힣]{2,})/g;
-    if(subPattern.test(t)){
-      // 복합명사(노인-아동, N-아동 등 짧은 것)는 제외, 긴 부제만 처리
-      t = t.replace(/([가-힣a-zA-Z\)]{4,})\s*-\s*([가-힣]{2,}[^,.\d])/g, (m,a,b)=>{
-        // 복합명사 패턴 (단어-단어, 앞뒤 2글자 이하) 제외
-        if(a.length<=3 && b.length<=3) return m;
-        return a+': '+b;
-      });
-    }
-  }
-  // "-으로-", "-으로", "로-" 형태 끝 처리
-  if(/[-–][가-힣]+[-–]/.test(t)||/[가-힣]+-$/.test(t.replace(/\.$/,''))){
-    t = t.replace(/[-–]([가-힣]+)[-–]/g,': $1');
-    t = t.replace(/([가-힣]+)-,/g,'$1,');
-    t = t.replace(/([가-힣]+)-\./g,'$1.');
-    iss.push({type:'error',desc:'부제 구분 수정 (하이픈 → 콜론, 끝 하이픈 제거)'});
+  // 4. 부제 끝 하이픈 제거
+  if(/[가-힣]-[,.]/.test(t)){
+    t = t.replace(/([가-힣])-,/g,'$1,').replace(/([가-힣])-\./g,'$1.');
+    iss.push({type:'error',desc:'부제 끝 하이픈 제거'});
   }
 
-  // 5. 영문 저자 연결 & → and (저널명 & 는 보존)
+  // 5. 영문 저자 연결 & → and (저널명 & 보존)
   if(/\w\s*&\s*\w/.test(t)){
     const before = t;
     t = smartAmpersand(t, true);
@@ -409,49 +482,42 @@ function correctKorean(orig){
     }
   }
 
-  // 7. ★ 학위논문 순서 자동 교정 ★
-  // 패턴: [대학교/대학원명] [석사/박사]학위논문 → [석사/박사]학위논문, [대학교/대학원명]
+  // 7. 학위논문 순서 자동 교정
   if(/석사학위논문|박사학위논문/.test(t)){
-    // 7-1. 마침표로 연결된 항목 → 쉼표로 통일
     t = t.replace(/\.\s*(석사학위논문|박사학위논문)/g,', $1');
-
-    // 7-2. 대학교/대학원명이 학위구분보다 앞에 있는 경우 순서 교체
-    // 패턴: [기관명(대학교|대학원|대학원대학교 등)] [학위구분]
-    const orderPattern = /(,[^,]+(?:대학교|대학원대학교|대학원)(?:\s+(?:일반|교육|전문|산업)대학원)?)\s*[,\s]\s*(석사학위논문|박사학위논문)/;
+    const orderPattern = /(,\s*)([^,]+(?:대학교|대학원대학교|대학원)(?:\s+(?:일반|교육|전문|산업)대학원)?)\s*[,\s]\s*(석사학위논문|박사학위논문)/;
     if(orderPattern.test(t)){
-      t = t.replace(
-        /(,\s*)([^,]+(?:대학교|대학원대학교|대학원)(?:\s+(?:일반|교육|전문|산업)대학원)?)\s*[,\s]\s*(석사학위논문|박사학위논문)/,
-        (m, comma, univ, degree) => `, ${degree.trim()}, ${univ.trim()}`
-      );
-      iss.push({type:'error',desc:'학위논문 순서 교정 (대학원명→학위구분 순 → 학위구분→대학원명 순)'});
+      t = t.replace(orderPattern,
+        (m,comma,univ,degree)=>`, ${degree.trim()}, ${univ.trim()}`);
+      iss.push({type:'error',desc:'학위논문 순서 교정 (학위구분, 대학원명 순)'});
     } else {
-      iss.push({type:'ok',desc:'학위논문 형식 정상 (학위구분, 대학원명 순서)'});
+      if(!iss.some(i=>i.desc.includes('학위')))
+        iss.push({type:'ok',desc:'학위논문 형식 정상'});
     }
-
-    // 7-3. 마지막 마침표 보장
-    t = t.replace(/,\s*$/, '.');
-    if(!/\.$/.test(t.trim())) t = t.trimEnd()+'.';
+    t = t.replace(/,\s*$/,'.');
   }
 
   // 8. 단행본 출판지 누락 감지
   const parts = t.split(',');
-  const isJournal = /학회지|학회보|저널|학술지|journal|review|science|health|nursing|연구$/i.test(t);
-  const isThesis2 = /학위논문/.test(t);
-  const isOnline2 = /http/.test(t);
-  const isReport  = /산림청|보건복지부|통계청|국가|행정|연구원|정부|부처/.test(t);
-  if(!isJournal && !isThesis2 && !isOnline2 && !isReport && parts.length<=3 && parts.length>=2){
-    const lastPart = parts[parts.length-1].trim().replace(/\.$/,'');
-    const hasPublisher = /사|원|부|원$/.test(lastPart);
-    if(hasPublisher) iss.push({type:'warning',desc:'단행본 출판지(도시명) 누락 여부 확인 필요'});
+  const isJournal=/학회지|학회보|저널|학술지|journal|review|science|health|nursing|연구$/i.test(t);
+  const isThesis2=/학위논문/.test(t);
+  const isOnline2=/http/.test(t);
+  const isReport=/산림청|보건복지부|통계청|국가|행정|연구원|정부/.test(t);
+  if(!isJournal&&!isThesis2&&!isOnline2&&!isReport&&parts.length<=3&&parts.length>=2){
+    const lp=parts[parts.length-1].trim().replace(/\.$/,'');
+    if(/사$|원$|부$/.test(lp))
+      iss.push({type:'warning',desc:'단행본 출판지(도시명) 누락 여부 확인 필요'});
   }
 
-  // 9. 마지막 마침표
-  if(!/\.$/.test(t.trim())) t = t.trimEnd()+'.';
+  // 9. 공백 정리 및 마지막 마침표
+  t = t.replace(/\s{2,}/g,' ').trim();
+  if(!/\.$/.test(t)) t += '.';
 
   if(iss.length===0) iss.push({type:'ok',desc:'형식 정상'});
   return {corrected:t, issues:iss};
 }
 
+/* ── APA 7판 ── */
 /* ── APA 7판 ── */
 function correctAPA7(orig){
   let t = orig.trim();
@@ -674,7 +740,13 @@ function renderAll(){
   html+=`<div class="nbox">
     <div class="ai-warn">⚠️ 규칙 기반 자동교정 결과입니다. 논문 제출 전 반드시 연구자 본인이 원문과 대조하여 최종 확인하시기 바랍니다.</div>
     ※ <strong style="color:#A32D2D;">[보완필요]</strong> 표시 항목은 원문을 직접 확인하여 보완하시기 바랍니다.<br>
-    ※ 각 항목 <strong>📋 복사</strong> 버튼 또는 <strong>📄 교정결과 전체 복사하기</strong>로 논문에 바로 붙여넣기 가능합니다.
+    ※ 각 항목 <strong>📋 복사</strong> 버튼 또는 <strong>📄 교정결과 전체 복사하기</strong>로 논문에 바로 붙여넣기 가능합니다.<br><br>
+    <div style="background:#EEF4FB;border:1px solid #B3CDE8;border-radius:7px;padding:10px 13px;margin-top:4px;font-size:12px;color:#1A3F5C;line-height:1.9;">
+      <strong>💡 교정 결과가 이상하거나 복잡한 오류가 있을 경우</strong><br>
+      <a href="https://claude.ai" target="_blank" style="color:#2F6FA8;font-weight:700;">claude.ai</a> 에서 무료 계정을 만든 후, 참고문헌을 붙여넣고<br>
+      <span style="font-style:italic;background:#E8F0FB;display:inline-block;padding:2px 7px;border-radius:4px;margin-top:3px;">"위 참고문헌을 한국학술지 양식으로 교정해줘."</span><br>
+      라고 입력하면 AI가 더 정확하게 교정해 드립니다. (무료, 신용카드 불필요)
+    </div>
   </div>`;
 
   document.getElementById('ra').innerHTML = html;
@@ -693,22 +765,75 @@ function cardH(r,idx){
   const cls  = hasE?'ce':hasW?'cw':'co';
   const showO = hasE||hasW;
   const safe  = esc(r.corrected).replace(/'/g,"&#39;");
-  return `<div class="rcard ${cls}">
+  const divId = 'corr_'+idx;
+  const taId  = 'ta_'+idx;
+  return `<div class="rcard ${cls}" id="card_${idx}">
     <div class="rhdr">
       <div class="rnum">[${idx+1}]</div>
-      <button class="bcp1" onclick="cpOne(this,'${safe}')">📋 복사</button>
+      <div style="display:flex;gap:4px;align-items:center;">
+        <button class="bedit" onclick="toggleEdit(${idx})">✏️ 직접수정</button>
+        <button class="bcp1" id="cpbtn_${idx}" onclick="cpOne(this,'${safe}',${idx})">📋 복사</button>
+      </div>
     </div>
     ${showO?`<div class="rorig">${esc(r.original)}</div>`:''}
-    <div class="rcorr">${hl(esc(r.corrected))}</div>
-    <div class="tags">${r.issues.map(i=>tagH(i.type,i.desc)).join('')}</div>
+    <div class="rcorr" id="${divId}">${hl(esc(r.corrected))}</div>
+    <textarea class="rcorr-edit" id="${taId}" style="display:none;" onchange="updateCorr(${idx},this.value)" oninput="updateCorr(${idx},this.value)">${esc(r.corrected)}</textarea>
+    <div class="tags">${r.issues.map(i=>tagH(i.type,i.desc)).join('')}
+      <span id="editTag_${idx}" style="display:none;" class="tag" style="background:#F5EEFF;color:#6B21A8;border-color:#DAC8F0;">✏️ 직접수정 중</span>
+    </div>
   </div>`;
 }
 
+function toggleEdit(idx){
+  const div  = document.getElementById('corr_'+idx);
+  const ta   = document.getElementById('ta_'+idx);
+  const btn  = document.querySelector(`#card_${idx} .bedit`);
+  const etag = document.getElementById('editTag_'+idx);
+  if(ta.style.display==='none'){
+    // 편집 모드 ON
+    ta.value = allRes[idx].corrected;
+    div.style.display='none';
+    ta.style.display='block';
+    ta.focus();
+    btn.textContent='✅ 수정완료';
+    btn.style.background='#D1FAE5';
+    btn.style.color='#065F46';
+    btn.style.borderColor='#6EE7B7';
+    if(etag) etag.style.display='inline-flex';
+  } else {
+    // 편집 모드 OFF
+    const newVal = ta.value;
+    allRes[idx].corrected = newVal;
+    div.innerHTML = hl(esc(newVal));
+    div.style.display='block';
+    ta.style.display='none';
+    btn.textContent='✏️ 직접수정';
+    btn.style.background='';
+    btn.style.color='';
+    btn.style.borderColor='';
+    if(etag) etag.style.display='none';
+    // 복사 버튼 연동
+    const cpbtn = document.getElementById('cpbtn_'+idx);
+    if(cpbtn) cpbtn.setAttribute('onclick',`cpOne(this,'${esc(newVal).replace(/'/g,"&#39;")}',${idx})`);
+  }
+}
+
+function updateCorr(idx, val){
+  allRes[idx].corrected = val;
+}
+
 /* ══ 복사 ══ */
-function cpOne(btn,enc){
-  const ta=document.createElement('textarea');
-  ta.innerHTML=enc;
-  doCopy(ta.value,btn,'📋 복사','✅ 복사됨!');
+function cpOne(btn,enc,idx){
+  // idx가 있으면 최신 수정값 사용
+  let text;
+  if(idx !== undefined && allRes[idx]){
+    text = allRes[idx].corrected;
+  } else {
+    const ta = document.createElement('textarea');
+    ta.innerHTML = enc;
+    text = ta.value;
+  }
+  doCopy(text, btn, '📋 복사', '✅ 복사됨!');
 }
 function copyAll(){
   if(!allRes.length)return;
