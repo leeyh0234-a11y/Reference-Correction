@@ -50,13 +50,13 @@ main{max-width:880px;margin:0 auto;padding:20px 14px 60px;}
 .ibox strong{color:var(--gd);}
 
 /* 입력 */
-.icard{background:var(--wh);border:1px solid var(--bdr);border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 2px 10px rgba(44,100,70,.05);}
-.ilbl{font-size:13px;font-weight:700;color:var(--gd);margin-bottom:7px;display:flex;align-items:center;gap:6px;}
-.cbadge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--gp);color:var(--gd);transition:all .3s;}
+.icard{background:#FFFEF0;border:2.5px solid #F9A825;border-radius:14px;padding:18px;margin-bottom:12px;box-shadow:0 4px 16px rgba(249,168,37,.18);}
+.ilbl{font-size:16px;font-weight:700;color:var(--gd);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.cbadge{font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px;background:var(--gp);color:var(--gd);transition:all .3s;}
 .cbadge.warn{background:#FFF4E0;color:var(--org);}
 .cbadge.over{background:#FFECEC;color:var(--red);}
-textarea{width:100%;min-height:175px;border:1.5px solid var(--bdr);border-radius:10px;padding:12px;font-size:14px;font-family:var(--font);line-height:1.7;resize:vertical;outline:none;color:var(--gray);background:#FAFFFE;transition:border-color .2s;}
-textarea:focus{border-color:var(--gl);background:var(--wh);}
+textarea{width:100%;min-height:200px;border:2px solid #F9A825;border-radius:10px;padding:14px;font-size:15px;font-family:var(--font);line-height:1.8;resize:vertical;outline:none;color:var(--gray);background:#FFFFF8;transition:border-color .2s,box-shadow .2s;}
+textarea:focus{border-color:var(--gl);background:var(--wh);box-shadow:0 0 0 3px rgba(82,183,136,.15);}
 .brow2{display:flex;gap:7px;margin-top:11px;flex-wrap:wrap;}
 .btn{padding:9px 17px;border-radius:8px;font-size:14px;font-family:var(--font);font-weight:700;cursor:pointer;border:none;transition:all .15s;}
 .bp{background:var(--gm);color:#fff;flex:1;min-width:130px;}
@@ -146,39 +146,6 @@ footer{text-align:center;font-size:12px;color:#aaa;padding:18px;border-top:1px s
     </div>
   </div>
 
-  <!-- 규칙 기반 한계 및 Claude.ai 안내 -->
-  <div style="background:#EEF4FB;border:1.5px solid #B3CDE8;border-left:5px solid #2F6FA8;border-radius:10px;padding:13px 18px;margin-bottom:14px;">
-    <div style="font-size:13px;font-weight:700;color:#1A3F5C;margin-bottom:8px;">📌 규칙 기반 교정기의 한계 및 이용 안내</div>
-    <div style="font-size:12.5px;color:#2C4A6A;line-height:1.9;">
-      본 교정기는 <strong>미리 정의된 규칙</strong>에 따라 작동하므로 아래와 같은 한계가 있습니다.<br>
-      <span style="display:inline-block;margin-top:4px;">
-        ⚠ 형식이 크게 벗어난 오입력(연도 위치 오류, 특수문자 혼입 등)은 교정이 불완전할 수 있습니다.<br>
-        ⚠ 새로운 유형의 오류는 규칙에 없으면 감지되지 않을 수 있습니다.<br>
-        ⚠ 저널명·단행본명 등 고유명사의 정확성은 확인이 필요합니다.
-      </span>
-    </div>
-    <div style="margin-top:10px;padding:10px 14px;background:#FFFFFF;border-radius:8px;border:1px solid #B3CDE8;">
-      <div style="font-size:13px;font-weight:700;color:#1A3F5C;margin-bottom:5px;">💡 복잡한 교정이 필요할 때 — Claude.ai 무료 이용 안내</div>
-      <div style="font-size:12.5px;color:#2C4A6A;line-height:1.9;">
-        오입력이 심하거나 교정 결과가 이상할 경우, <strong>AI(Claude)에게 직접 교정</strong>을 요청하시면 더 정확한 결과를 얻을 수 있습니다.
-      </div>
-      <div style="margin-top:8px;background:#F0F7FF;border-radius:6px;padding:9px 12px;font-size:12px;color:#1A3F5C;line-height:1.9;">
-        <strong>① 무료 계정 만들기</strong><br>
-        &nbsp;&nbsp;→ <a href="https://claude.ai" target="_blank" style="color:#2F6FA8;font-weight:700;">claude.ai</a> 접속 → 이메일로 무료 가입 (신용카드 불필요)<br>
-        <strong>② 참고문헌 붙여넣기</strong><br>
-        &nbsp;&nbsp;→ 교정이 필요한 참고문헌을 복사하여 Claude 채팅창에 붙여넣기<br>
-        <strong>③ 교정 요청 메시지 입력</strong><br>
-        &nbsp;&nbsp;→ 아래 문구를 함께 입력하세요:
-        <div style="margin-top:6px;background:#E8F0FB;border-radius:5px;padding:7px 10px;font-style:italic;color:#1A3F5C;font-size:12px;">
-          "위 참고문헌을 <strong>한국학술지(또는 APA 7판)</strong> 양식에 맞게 교정해줘. 저자명(연도), 논문제목, 학술지명, 권(호), 페이지. 형식으로 정리하고 오류 항목을 표시해줘."
-        </div>
-      </div>
-      <div style="margin-top:7px;font-size:11.5px;color:#666;">
-        ※ Claude.ai 무료 계정은 하루 일정량까지 무료로 사용 가능합니다. 로그인 없이도 일부 사용 가능합니다.
-      </div>
-    </div>
-  </div>
-
   <!-- 양식 선택 -->
   <div class="sec-lbl">① 참고문헌 양식 선택</div>
   <div class="sgrid">
@@ -243,6 +210,39 @@ footer{text-align:center;font-size:12px;color:#aaa;padding:18px;border-top:1px s
   <div id="ra"></div>
 
 </main>
+
+  <!-- 규칙 기반 한계 및 Claude.ai 안내 — 하단 -->
+  <div style="max-width:880px;margin:0 auto 0;padding:0 14px 30px;">
+    <div style="background:#EEF4FB;border:1.5px solid #B3CDE8;border-left:5px solid #2F6FA8;border-radius:10px;padding:16px 20px;">
+      <div style="font-size:14px;font-weight:700;color:#1A3F5C;margin-bottom:10px;">📌 규칙 기반 교정기의 한계 및 이용 안내</div>
+      <div style="font-size:12.5px;color:#2C4A6A;line-height:1.9;">
+        본 교정기는 <strong>미리 정의된 규칙</strong>에 따라 작동하므로 아래와 같은 한계가 있습니다.<br>
+        ⚠ 형식이 크게 벗어난 오입력(연도 위치 오류, 특수문자 혼입 등)은 교정이 불완전할 수 있습니다.<br>
+        ⚠ 새로운 유형의 오류는 규칙에 없으면 감지되지 않을 수 있습니다.<br>
+        ⚠ 저널명·단행본명 등 고유명사의 정확성은 별도 확인이 필요합니다.
+      </div>
+      <div style="margin-top:12px;padding:12px 15px;background:#FFFFFF;border-radius:8px;border:1px solid #B3CDE8;">
+        <div style="font-size:13px;font-weight:700;color:#1A3F5C;margin-bottom:6px;">💡 복잡한 교정이 필요할 때 — Claude.ai 무료 이용 안내</div>
+        <div style="font-size:12.5px;color:#2C4A6A;line-height:1.9;">
+          오입력이 심하거나 교정 결과가 이상할 경우, <strong>AI(Claude)에게 직접 교정</strong>을 요청하시면 더 정확한 결과를 얻을 수 있습니다.
+        </div>
+        <div style="margin-top:8px;background:#F0F7FF;border-radius:6px;padding:10px 13px;font-size:12.5px;color:#1A3F5C;line-height:2.0;">
+          <strong>① 무료 계정 만들기</strong><br>
+          &nbsp;&nbsp;→ <a href="https://claude.ai" target="_blank" style="color:#2F6FA8;font-weight:700;">claude.ai</a> 접속 → 이메일로 무료 가입 (신용카드 불필요)<br>
+          <strong>② 참고문헌 붙여넣기</strong><br>
+          &nbsp;&nbsp;→ 교정이 필요한 참고문헌을 복사하여 Claude 채팅창에 붙여넣기<br>
+          <strong>③ 교정 요청 메시지 입력</strong><br>
+          &nbsp;&nbsp;→ 아래 문구를 함께 입력하세요:
+          <div style="margin-top:7px;background:#E8F0FB;border-radius:5px;padding:8px 11px;font-style:italic;color:#1A3F5C;font-size:12.5px;">
+            "위 참고문헌을 <strong>한국학술지(또는 APA 7판)</strong> 양식에 맞게 교정해줘. 저자명(연도), 논문제목, 학술지명, 권(호), 페이지. 형식으로 정리하고 오류 항목을 표시해줘."
+          </div>
+        </div>
+        <div style="margin-top:8px;font-size:11.5px;color:#666;">
+          ※ Claude.ai 무료 계정은 하루 일정량까지 무료로 사용 가능합니다. 로그인 없이도 일부 사용 가능합니다.
+        </div>
+      </div>
+    </div>
+  </div>
 
 <footer>
   참고문헌 자동교정기 &nbsp;|&nbsp; 충북대학교 산림치유학협동과정 &nbsp;|&nbsp; Powered by 규칙 기반 엔진<br>
