@@ -219,32 +219,18 @@ footer{text-align:center;font-size:12px;color:#aaa;padding:18px;border-top:1px s
   <!-- 규칙 기반 한계 및 Claude.ai 안내 — 하단 -->
   <div style="max-width:880px;margin:0 auto 0;padding:0 14px 30px;">
     <div style="background:#EEF4FB;border:1.5px solid #B3CDE8;border-left:5px solid #2F6FA8;border-radius:10px;padding:16px 20px;">
-      <div style="font-size:14px;font-weight:700;color:#1A3F5C;margin-bottom:10px;">📌 규칙 기반 교정기의 한계 및 이용 안내</div>
+      <div style="font-size:14px;font-weight:700;color:#1A3F5C;margin-bottom:10px;">📌 규칙 기반 교정기의 한계 및 Claude.ai 무료 이용 안내</div>
       <div style="font-size:12.5px;color:#2C4A6A;line-height:1.9;">
-        본 교정기는 <strong>미리 정의된 규칙</strong>에 따라 작동하므로 아래와 같은 한계가 있습니다.<br>
-        ⚠ 형식이 크게 벗어난 오입력(연도 위치 오류, 특수문자 혼입 등)은 교정이 불완전할 수 있습니다.<br>
-        ⚠ 새로운 유형의 오류는 규칙에 없으면 감지되지 않을 수 있습니다.<br>
-        ⚠ 저널명·단행본명 등 고유명사의 정확성은 별도 확인이 필요합니다.
+        본 교정기는 규칙 기반으로 작동하므로 <strong>오입력이 심하거나 교정 결과가 이상할 경우</strong>
+        아래 방법으로 AI에게 직접 교정을 요청하시면 더 정확합니다.
       </div>
-      <div style="margin-top:12px;padding:12px 15px;background:#FFFFFF;border-radius:8px;border:1px solid #B3CDE8;">
-        <div style="font-size:13px;font-weight:700;color:#1A3F5C;margin-bottom:6px;">💡 복잡한 교정이 필요할 때 — Claude.ai 무료 이용 안내</div>
-        <div style="font-size:12.5px;color:#2C4A6A;line-height:1.9;">
-          오입력이 심하거나 교정 결과가 이상할 경우, <strong>AI(Claude)에게 직접 교정</strong>을 요청하시면 더 정확한 결과를 얻을 수 있습니다.
+      <div style="margin-top:10px;background:#F0F7FF;border-radius:7px;padding:11px 14px;font-size:12.5px;color:#1A3F5C;line-height:2.0;">
+        <strong>① </strong><a href="https://claude.ai" target="_blank" style="color:#2F6FA8;font-weight:700;">claude.ai</a> 접속 → 이메일로 무료 가입 (신용카드 불필요)<br>
+        <strong>② </strong>참고문헌 붙여넣기 후 아래 문구 입력:<br>
+        <div style="margin-top:6px;background:#E8F0FB;border-radius:5px;padding:7px 11px;font-style:italic;color:#1A3F5C;">
+          "위 참고문헌을 <strong>한국학술지(또는 APA 7판)</strong> 양식으로 교정해줘."
         </div>
-        <div style="margin-top:8px;background:#F0F7FF;border-radius:6px;padding:10px 13px;font-size:12.5px;color:#1A3F5C;line-height:2.0;">
-          <strong>① 무료 계정 만들기</strong><br>
-          &nbsp;&nbsp;→ <a href="https://claude.ai" target="_blank" style="color:#2F6FA8;font-weight:700;">claude.ai</a> 접속 → 이메일로 무료 가입 (신용카드 불필요)<br>
-          <strong>② 참고문헌 붙여넣기</strong><br>
-          &nbsp;&nbsp;→ 교정이 필요한 참고문헌을 복사하여 Claude 채팅창에 붙여넣기<br>
-          <strong>③ 교정 요청 메시지 입력</strong><br>
-          &nbsp;&nbsp;→ 아래 문구를 함께 입력하세요:
-          <div style="margin-top:7px;background:#E8F0FB;border-radius:5px;padding:8px 11px;font-style:italic;color:#1A3F5C;font-size:12.5px;">
-            "위 참고문헌을 <strong>한국학술지(또는 APA 7판)</strong> 양식에 맞게 교정해줘. 저자명(연도), 논문제목, 학술지명, 권(호), 페이지. 형식으로 정리하고 오류 항목을 표시해줘."
-          </div>
-        </div>
-        <div style="margin-top:8px;font-size:11.5px;color:#666;">
-          ※ Claude.ai 무료 계정은 하루 일정량까지 무료로 사용 가능합니다. 로그인 없이도 일부 사용 가능합니다.
-        </div>
+        <div style="margin-top:7px;font-size:11.5px;color:#888;">※ 무료 계정은 하루 일정량까지 무료 사용 가능합니다.</div>
       </div>
     </div>
   </div>
@@ -745,13 +731,7 @@ function renderAll(){
   html+=`<div class="nbox">
     <div class="ai-warn">⚠️ 규칙 기반 자동교정 결과입니다. 논문 제출 전 반드시 연구자 본인이 원문과 대조하여 최종 확인하시기 바랍니다.</div>
     ※ <strong style="color:#A32D2D;">[보완필요]</strong> 표시 항목은 원문을 직접 확인하여 보완하시기 바랍니다.<br>
-    ※ 각 항목 <strong>📋 복사</strong> 버튼 또는 <strong>📄 교정결과 전체 복사하기</strong>로 논문에 바로 붙여넣기 가능합니다.<br><br>
-    <div style="background:#EEF4FB;border:1px solid #B3CDE8;border-radius:7px;padding:10px 13px;margin-top:4px;font-size:12px;color:#1A3F5C;line-height:1.9;">
-      <strong>💡 교정 결과가 이상하거나 복잡한 오류가 있을 경우</strong><br>
-      <a href="https://claude.ai" target="_blank" style="color:#2F6FA8;font-weight:700;">claude.ai</a> 에서 무료 계정을 만든 후, 참고문헌을 붙여넣고<br>
-      <span style="font-style:italic;background:#E8F0FB;display:inline-block;padding:2px 7px;border-radius:4px;margin-top:3px;">"위 참고문헌을 한국학술지 양식으로 교정해줘."</span><br>
-      라고 입력하면 AI가 더 정확하게 교정해 드립니다. (무료, 신용카드 불필요)
-    </div>
+    ※ 교정 결과가 이상할 경우 — 하단 <strong>Claude.ai 무료 이용 안내</strong>를 참고하세요.
   </div>`;
 
   document.getElementById('ra').innerHTML = html;
