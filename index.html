@@ -64,10 +64,11 @@ textarea:focus{border-color:var(--gl);background:var(--wh);box-shadow:0 0 0 3px 
 .bp:active{transform:scale(.98);}
 .bs{background:var(--gry3);color:var(--gray);border:1px solid #ddd;}
 .bs:hover{background:#E8E8E8;}
-.bca{background:var(--gp);color:var(--gd);border:1px solid var(--bdr);display:none;}
+.bca{background:var(--gp);color:var(--gd);border:1px solid var(--bdr);display:none;white-space:nowrap;}
 .bca:hover{background:#C3EBCC;}
-.bcp{background:var(--gd);color:#fff;display:none;}
-.bcp:hover{background:#0F2E1C;}
+.bcp{background:#B8860B;color:#fff;display:none;white-space:nowrap;border:3px solid #8B6914;box-shadow:0 3px 10px rgba(184,134,11,.4);font-size:15px;letter-spacing:-0.3px;}
+.bcp:hover{background:#996B00;transform:translateY(-1px);box-shadow:0 5px 14px rgba(184,134,11,.5);}
+.bcp:active{transform:scale(.98);}
 
 /* 통계 */
 .srow{display:none;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;}
@@ -190,11 +191,15 @@ footer{text-align:center;font-size:12px;color:#aaa;padding:18px;border-top:1px s
     <div class="ilbl">② 참고문헌 입력 <span class="cbadge" id="cb">0건</span></div>
     <textarea id="ri" placeholder="참고문헌을 여기에 붙여넣으세요. 한 줄씩 입력, 국내·해외 혼용 가능합니다.&#10;&#10;예시)&#10;강제이·손재헌(2022), &quot;10주간 산림트레킹의 효과&quot;, 한국스포츠학회지, 제20권 2호, pp.391~401.&#10;Smith, A.B., &amp; Jones, C.(2020). &quot;Forest therapy.&quot; Journal of Health, 15(3), 100-120."></textarea>
     <div class="brow2">
-      <button class="btn bp" id="ab" onclick="doCorrect()">🔍 참고문헌 교정하기</button>
-      <button class="btn bs" onclick="loadSample()">예시 불러오기</button>
-      <button class="btn bs" onclick="clearAll()">초기화</button>
-      <button class="btn bca" id="bca" onclick="copyAll()">📋 교정된 참고문헌만 전체복사</button>
-      <button class="btn bcp" id="bcp" onclick="copyPaper()">📄 교정결과 전체 복사하기</button>
+      <div style="display:flex;gap:7px;width:100%;flex-wrap:nowrap;">
+        <button class="btn bp" id="ab" onclick="doCorrect()" style="flex:1;">🔍 참고문헌 교정하기</button>
+        <button class="btn bs" onclick="loadSample()">예시 불러오기</button>
+        <button class="btn bs" onclick="clearAll()">초기화</button>
+      </div>
+      <div style="display:flex;gap:7px;width:100%;margin-top:7px;">
+        <button class="btn bcp" id="bcp" onclick="copyPaper()" style="flex:1;">📄 교정결과 전체 복사하기</button>
+        <button class="btn bca" id="bca" onclick="copyAll()" style="flex:1;">📋 교정된 참고문헌만 전체복사</button>
+      </div>
     </div>
   </div>
 
